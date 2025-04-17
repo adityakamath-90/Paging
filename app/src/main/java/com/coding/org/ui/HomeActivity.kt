@@ -31,9 +31,8 @@ class HomeActivity : ComponentActivity() {
         binding.listView.adapter =adapter
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.getMovieList() // triggers Pager
                 viewModel.movies.collectLatest {
-                    Log.i("MOVIES", "📦 Submitting PagingData to adapter")
+                    Log.i("MOVIES", "Submitting PagingData to adapter")
                     adapter.submitData(it)
                 }
             }
@@ -42,7 +41,7 @@ class HomeActivity : ComponentActivity() {
         // Optional: observe load state (e.g., for showing loading spinners or retry buttons)
         lifecycleScope.launch {
             adapter.loadStateFlow.collectLatest { loadStates ->
-                Log.i("MOVIES", "🔄 LoadState: ${loadStates.refresh}")
+                Log.i("MOVIES", "LoadState: ${loadStates.refresh}")
             }
         }
     }

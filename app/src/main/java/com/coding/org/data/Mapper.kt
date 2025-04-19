@@ -7,7 +7,7 @@ fun MovieEntity.toDomainModel(): com.coding.org.domain.Movie {
     return com.coding.org.domain.Movie(
         title = this.title,
         id = this.movieId,
-        posterUrl = this.posterPath!!
+        posterUrl = this.posterPath ?: ""
     )
 }
 

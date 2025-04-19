@@ -9,7 +9,7 @@ import com.coding.org.data.local.model.MovieEntity
 
 @Dao
 interface MovieDao {
-    @Query("SELECT * FROM movies ORDER BY movieId asc")
+    @Query("SELECT * FROM movies")
     fun getPagedMovies(): PagingSource<Int, MovieEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

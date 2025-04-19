@@ -8,15 +8,13 @@ import com.coding.org.data.local.model.RemoteKey
 
 @Dao
 interface RemoteKeyDao {
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertKeys(keys: List<RemoteKey>)
+    @Query("SELECT * FROM remote_keys WHERE movieId = :id")
+    suspend fun remoteKeyByMovie(id: String): RemoteKey?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertKey(key: RemoteKey)
+    suspend fun insertAll(keys: List<RemoteKey>)
 
-    @Query("select * from movie_remote_keys where id=:key")
-    suspend fun getKeyByMovie(key: String): RemoteKey?
-
-    @Query("delete from movie_remote_keys")
-    suspend fun clearKeys()
+    @Query("DELETE FROM remote_keys")
+    suspend fun clearRemoteKeys()
 }
+

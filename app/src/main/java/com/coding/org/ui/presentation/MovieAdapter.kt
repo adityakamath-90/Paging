@@ -5,10 +5,15 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.coding.`fun`.databinding.MovieListItemBinding
 import com.coding.org.domain.Movie
+import javax.inject.Inject
 
 class MovieAdapter(): PagingDataAdapter<Movie,MovieAdapter.ViewHolder>(MovieDiffCallback) {
+
+    @Inject
+    lateinit var glide: Glide
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -23,6 +28,9 @@ class MovieAdapter(): PagingDataAdapter<Movie,MovieAdapter.ViewHolder>(MovieDiff
         position: Int
     ) {
         holder.binding.movieName.text = getItem(position)?.title
+        Glide.with(holder.binding.movieLogo.context)
+            .load("https://image.tmdb.org/t/p/w500" + getItem(position)?.posterUrl)
+            .into(holder.binding.movieLogo)
     }
 
     inner class ViewHolder(val binding: MovieListItemBinding) : RecyclerView.ViewHolder(binding.root)

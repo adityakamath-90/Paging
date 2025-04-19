@@ -7,18 +7,8 @@ import androidx.room.PrimaryKey
     tableName = "movies"
 )
 data class MovieEntity(
-    @PrimaryKey(autoGenerate = true)
-    val id: Int = 0,
-    val adult: Boolean?,
-    val backdrop_path: String?,
-    val movie_id: Int,
-    val original_language: String,
-    val overview: String?,
-    val popularity: Float?,
-    val poster_path: String?,
-    val release_date: String?,
+    @PrimaryKey
+    val movieId: String,
+    val posterPath: String?,
     val title: String,
-    val video: Boolean?,
-    val vote_average: Float?,
-    val vote_count: Int?
 )

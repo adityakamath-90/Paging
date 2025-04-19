@@ -23,6 +23,6 @@ class DatabaseModule {
             context,
             TmdbDatabase::class.java,
             "tmdb.db"
-        ).build()
+        ).fallbackToDestructiveMigration(true).build()
     }
 }

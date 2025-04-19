@@ -6,23 +6,15 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.coding.org.data.local.model.MovieEntity
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface MovieDao {
+    @Query("SELECT * FROM movies ORDER BY movieId asc")
+    fun getPagedMovies(): PagingSource<Int, MovieEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertMovie(movie: MovieEntity)
+    suspend fun insertAll(articles: List<MovieEntity>)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertMovies(movies: List<MovieEntity>)
-
-    @Query("delete from movies")
-    suspend fun clearMovies()
-
-    @Query("select * from movies order by id asc")
-    fun getPagingMovie() : PagingSource<Int, MovieEntity>
-
-    @Query("select * from movies order by id asc limit :limit")
-    fun getFlowMovies(limit: Int): Flow<List<MovieEntity>>
+    @Query("DELETE FROM movies")
+    suspend fun clearAll()
 }

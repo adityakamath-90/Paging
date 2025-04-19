@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:minHeight="18dp"
-    android:layout_height="70dp">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="8dp">
 
+    <ImageView
+        android:id="@+id/movieLogo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="16dp" />
     <TextView
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_toRightOf="@+id/movieLogo"
+        android:text="hiii"
         android:layout_centerVertical="true"
         android:id="@+id/movieName"
         android:layout_width="wrap_content"

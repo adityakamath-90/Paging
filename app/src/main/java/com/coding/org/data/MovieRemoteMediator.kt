@@ -52,7 +52,7 @@ class MovieRemoteMediator(
             // Move API key to BuildConfig or config file
             val response = service.popularMovie(
                 page = page,
-                api_key = "6e5e29145fb574f21d8efc11b07761e0"
+                api_key = ""
             )
 
             val movies = response.results
